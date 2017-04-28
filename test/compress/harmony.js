@@ -370,3 +370,32 @@ issue_1613: {
   }
   expect_exact: "const n=1;const c={name:n};"
 }
+
+issue_1753: {
+    mangle = { };
+    input: {
+        class SomeClass {
+            constructor(props) {
+                let pickedSets = [];
+                for (let i = 0; i < 6; i++) {
+                    pickedSets.push({
+                        mainDrawNumbers: [],
+                        extraDrawNumbers: []
+                    });
+                }
+            }
+        }
+    }
+    expect: {
+        class SomeClass {
+            constructor(r) {
+                let a = [];
+                for (let s = 0; s < 6; s++)
+                    a.push({
+                        mainDrawNumbers: [],
+                        extraDrawNumbers: []
+                    });
+            }
+        }
+    }
+}
